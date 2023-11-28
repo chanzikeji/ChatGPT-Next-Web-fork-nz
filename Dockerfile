@@ -13,6 +13,8 @@ RUN yarn install
 
 FROM base AS builder
 
+ENV NEXT_TELEMETRY_DISABLED 1
+
 RUN apk update && apk add --no-cache git
 
 ENV OPENAI_API_KEY=""
