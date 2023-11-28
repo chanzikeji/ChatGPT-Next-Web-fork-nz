@@ -28,8 +28,13 @@ export async function requestOpenai(req: NextRequest) {
     baseUrl = baseUrl.slice(0, -1);
   }
 
-  console.log("[Proxy] ", path);
-  console.log("[Base Url]", baseUrl);
+  // console.log("[Proxy] ", path);
+  // console.log("[Base Url]", baseUrl);
+
+  if (path.startsWith("v1/chat/completions")) {
+    console.log("[Chat] ", await req.clone().json());
+  }
+
   // this fix [Org ID] undefined in server side if not using custom point
   if (serverConfig.openaiOrgId !== undefined) {
     console.log("[Org ID]", serverConfig.openaiOrgId);
